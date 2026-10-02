@@ -1,0 +1,923 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------ */
+/* Fonts — self-hosted, Latin subset only, woff2 only.                 */
+/* The three used above the fold are preloaded (see vite.config.ts).   */
+/* ------------------------------------------------------------------ */
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2')
+    format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Cinzel Variable';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('../node_modules/@fontsource-variable/cinzel/files/cinzel-latin-wght-normal.woff2')
+    format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2')
+    format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-italic.woff2')
+    format('woff2');
+}
+
+/* ------------------------------------------------------------------ */
+/* Design tokens — deep navy, blue, white. No other hues.              */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-navy-950: #04101f;
+  --color-navy-900: #061426;
+  --color-navy-800: #0a1d35;
+  --color-navy-700: #102a4c;
+  --color-royal: #0d47a1;
+  --color-azure: #1976d2;
+  --color-sky: #6fb1f2;
+  --color-mist: #e8eef5;
+  --color-muted: #91a4b8;
+  --color-line: rgba(255, 255, 255, 0.1);
+  --color-alert: #e89a9a;
+
+  --font-display: 'Cinzel Variable', 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Separates very narrow phones (≈320px) from standard ones. */
+  --breakpoint-xs: 25rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    background: var(--color-navy-900);
+    -webkit-text-size-adjust: 100%;
+    scrollbar-color: #1b3a63 var(--color-navy-950);
+    /* Keeps the layout steady when the dialog locks page scroll. */
+    scrollbar-gutter: stable;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    min-height: 100svh;
+    overflow-x: clip;
+    background: var(--color-navy-900);
+    color: var(--color-mist);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgba(25, 118, 210, 0.5);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-sky);
+    outline-offset: 3px;
+  }
+
+  /* Removes the 300ms tap delay and double-tap zoom on controls. */
+  a,
+  button,
+  input,
+  [role='option'] {
+    touch-action: manipulation;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  /* Remove the browser's own password reveal control — the form supplies one. */
+  input::-ms-reveal,
+  input::-ms-clear {
+    display: none;
+  }
+
+  /* Keep autofilled inputs on-palette. */
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff;
+    caret-color: #fff;
+    box-shadow: 0 0 0 1000px var(--color-navy-950) inset;
+    transition: background-color 9999s ease-out;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Shared component classes                                            */
+/* ------------------------------------------------------------------ */
+@layer components {
+  .shell {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 82rem;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 40rem) {
+    .shell {
+      padding-inline: 2rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .shell {
+      padding-inline: 3rem;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--color-sky);
+  }
+
+  /* Institutional panel: square, hairline border, faint inner light. */
+  .panel {
+    position: relative;
+    border: 1px solid var(--color-line);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0) 40%),
+      rgba(10, 29, 53, 0.72);
+  }
+
+  /* Corner registration marks, as found on formal documents. */
+  .corner-marks::before,
+  .corner-marks::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    border-color: rgba(111, 177, 242, 0.75);
+    border-style: solid;
+  }
+
+  .corner-marks::before {
+    top: -1px;
+    left: -1px;
+    border-width: 1px 0 0 1px;
+  }
+
+  .corner-marks::after {
+    right: -1px;
+    bottom: -1px;
+    border-width: 0 1px 1px 0;
+  }
+
+  /* Feature panel. Its travelling border highlight is the <BorderGlint /> child. */
+  .panel-animated {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(180deg, #0b2039, #071a30);
+    box-shadow:
+      0 40px 80px -40px rgba(2, 8, 18, 0.9),
+      0 0 60px -30px rgba(25, 118, 210, 0.45);
+  }
+
+  /* Glass without backdrop-filter: a lit, translucent navy surface. */
+  .glass {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015)),
+      rgba(5, 18, 35, 0.8);
+  }
+
+  .hairline {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion                                                              */
+/*                                                                     */
+/* Everything that runs continuously animates only `transform` and     */
+/* `opacity`, so it stays on the compositor and never triggers layout  */
+/* or paint on the main thread.                                        */
+/* ------------------------------------------------------------------ */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition:
+    opacity 750ms var(--ease-expo),
+    transform 750ms var(--ease-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.page-enter {
+  animation: page-enter 450ms var(--ease-expo) both;
+}
+
+.hero-rise {
+  animation: rise 800ms var(--ease-expo) both;
+  animation-delay: var(--rise-delay, 0ms);
+}
+
+.hero-visual-enter {
+  animation: fade-in 1200ms ease-out both;
+}
+
+.spin-slow {
+  animation: spin 140s linear infinite;
+  will-change: transform;
+}
+
+.spin-slow-reverse {
+  animation: spin 190s linear infinite reverse;
+  will-change: transform;
+}
+
+/* Decorative rotation reserved for larger screens. */
+@media (min-width: 64rem) {
+  .spin-slow-desktop {
+    animation: spin 140s linear infinite;
+    will-change: transform;
+  }
+}
+
+.ray {
+  animation: ray-shimmer 9s ease-in-out infinite;
+}
+
+.breathe {
+  animation: breathe 8s ease-in-out infinite;
+}
+
+.float-soft {
+  animation: float-soft 9s ease-in-out infinite;
+}
+
+.pulse-ring {
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+
+/* --- Site backdrop ------------------------------------------------- */
+.backdrop-orb {
+  position: absolute;
+  border-radius: 9999px;
+}
+
+.backdrop-orb--a {
+  top: -30vh;
+  left: -20vw;
+  width: 90vw;
+  height: 90vw;
+  background: radial-gradient(circle, rgba(13, 71, 161, 0.3), transparent 62%);
+}
+
+.backdrop-orb--b {
+  right: -30vw;
+  bottom: -40vh;
+  width: 100vw;
+  height: 100vw;
+  background: radial-gradient(circle, rgba(25, 118, 210, 0.14), transparent 60%);
+}
+
+/* The slow drift is a desktop refinement; smaller screens keep the gradients still. */
+@media (min-width: 64rem) {
+  .backdrop-orb {
+    will-change: transform;
+  }
+
+  .backdrop-orb--a {
+    animation: drift-a 46s ease-in-out infinite alternate;
+  }
+
+  .backdrop-orb--b {
+    animation: drift-b 58s ease-in-out infinite alternate;
+  }
+}
+
+.backdrop-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 104px 104px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 20%, transparent 78%);
+}
+
+/* --- Particle field ---------------------------------------------------- */
+.particle-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* A depth layer: drifts sideways and twinkles as a group. */
+.mote-layer {
+  position: absolute;
+  inset: 0;
+  animation-name: mote-sway, mote-twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate, normal;
+}
+
+/* Twice the field's height with every mote drawn twice, so sliding up by half
+   its own height loops seamlessly. */
+.mote-sheet {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 200%;
+  animation: mote-rise linear infinite;
+}
+
+.mote {
+  position: absolute;
+  border-radius: 9999px;
+}
+
+/* Off-screen sections hold their animations still. */
+.anim-paused,
+.anim-paused *,
+.anim-paused *::before,
+.anim-paused *::after {
+  animation-play-state: paused !important;
+}
+
+/* --- Hero illustration layers --------------------------------------- */
+/* Each moving part is its own element so it can be composited on its own. */
+.hero-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-halo {
+  position: absolute;
+  top: -5.68%;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle closest-side,
+    rgba(25, 118, 210, 0.55) 0%,
+    rgba(13, 71, 161, 0.22) 45%,
+    rgba(13, 71, 161, 0) 100%
+  );
+}
+
+.hero-ring {
+  position: absolute;
+  aspect-ratio: 1;
+}
+
+/* Centred on the seal at (400, 350) of the 800 × 880 artboard. */
+.hero-ring--outer {
+  top: 6.136%;
+  left: 13%;
+  width: 74%;
+}
+
+.hero-ring--inner {
+  top: 14.091%;
+  left: 21.75%;
+  width: 56.5%;
+}
+
+/* --- Button sheen ---------------------------------------------------- */
+.btn-sheen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 700ms var(--ease-expo);
+  pointer-events: none;
+}
+
+.btn-sheen:hover::before,
+.btn-sheen:focus-visible::before {
+  transform: translateX(120%);
+}
+
+/* --- Travelling border highlight ------------------------------------- */
+/* Four 1px tracks; a soft highlight slides along each in turn. */
+.border-glint {
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+}
+
+.border-glint > span {
+  position: absolute;
+  overflow: hidden;
+}
+
+.border-glint > span::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  animation-duration: 9s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.border-glint__top,
+.border-glint__bottom {
+  right: 0;
+  left: 0;
+  height: 1px;
+}
+
+.border-glint__right,
+.border-glint__left {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.border-glint__top {
+  top: 0;
+}
+
+.border-glint__right {
+  right: 0;
+}
+
+.border-glint__bottom {
+  bottom: 0;
+}
+
+.border-glint__left {
+  left: 0;
+}
+
+.border-glint__top::before,
+.border-glint__bottom::before {
+  background: linear-gradient(90deg, transparent 28%, rgba(111, 177, 242, 0.95) 50%, transparent 72%);
+}
+
+.border-glint__right::before,
+.border-glint__left::before {
+  background: linear-gradient(180deg, transparent 28%, rgba(111, 177, 242, 0.95) 50%, transparent 72%);
+}
+
+/* Each side is active for half the cycle, offset by a quarter, so the
+   highlight hands over smoothly at every corner. */
+.border-glint__top::before {
+  animation-name: glint-right;
+  animation-delay: -1.125s;
+}
+
+.border-glint__right::before {
+  animation-name: glint-down;
+  animation-delay: -7.875s;
+}
+
+.border-glint__bottom::before {
+  animation-name: glint-left;
+  animation-delay: -5.625s;
+}
+
+.border-glint__left::before {
+  animation-name: glint-up;
+  animation-delay: -3.375s;
+}
+
+/* --- Timeline connector fill ------------------------------------------ */
+/* Vertical on small screens, horizontal on large. */
+.timeline-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #6fb1f2, #1976d2);
+  box-shadow: 0 0 12px rgba(25, 118, 210, 0.9);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 900ms var(--ease-expo);
+}
+
+.timeline-fill.is-filled {
+  transform: scaleY(1);
+}
+
+@media (min-width: 64rem) {
+  .timeline-fill {
+    background: linear-gradient(90deg, #6fb1f2, #1976d2);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .timeline-fill.is-filled {
+    transform: scaleX(1);
+  }
+}
+
+/* --- Process diagram --------------------------------------------------- */
+.diagram-step {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity 700ms var(--ease-expo),
+    transform 700ms var(--ease-expo);
+  transition-delay: var(--step-delay, 0ms);
+}
+
+.diagram-line {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 600ms var(--ease-expo);
+  transition-delay: var(--step-delay, 0ms);
+}
+
+.diagram.is-visible .diagram-step {
+  opacity: 1;
+  transform: none;
+}
+
+.diagram.is-visible .diagram-line {
+  transform: scaleY(1);
+}
+
+/* A full-height track that slides down; the dot rides at its top edge. */
+.diagram-pulse {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 6px;
+  margin-left: -3px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.diagram-pulse::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 0 12px 3px rgba(111, 177, 242, 0.95);
+}
+
+.diagram.is-visible .diagram-pulse {
+  animation: flow-down 3.6s linear infinite;
+  animation-delay: var(--pulse-delay, 0ms);
+}
+
+/* --- Modal, listbox, processing scan ------------------------------------ */
+.modal-backdrop {
+  animation: fade-in 240ms ease-out both;
+}
+
+.modal-card {
+  animation: modal-in 400ms var(--ease-expo) both;
+}
+
+.modal-closing .modal-backdrop {
+  animation: fade-out 180ms ease-in both;
+}
+
+.modal-closing .modal-card {
+  animation: modal-out 180ms ease-in both;
+}
+
+/* While the dialog is open, everything behind it holds still. */
+.is-modal-open #root *,
+.is-modal-open #root *::before,
+.is-modal-open #root *::after {
+  animation-play-state: paused !important;
+}
+
+.listbox-enter {
+  animation: listbox-in 160ms var(--ease-expo) both;
+}
+
+/* Full-height track that slides down; the line sits at its top edge. */
+.scan-line {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  animation: scan 1.9s ease-in-out infinite;
+}
+
+/* ------------------------------------------------------------------ */
+/* Keyframes                                                           */
+/* ------------------------------------------------------------------ */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ray-shimmer {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.75);
+  }
+}
+
+@keyframes drift-a {
+  to {
+    transform: translate3d(14vw, 10vh, 0) scale(1.12);
+  }
+}
+
+@keyframes drift-b {
+  to {
+    transform: translate3d(-12vw, -12vh, 0) scale(0.92);
+  }
+}
+
+@keyframes mote-rise {
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes mote-sway {
+  from {
+    transform: translate3d(calc(var(--mote-sway) * -1), 0, 0);
+  }
+  to {
+    transform: translate3d(var(--mote-sway), 0, 0);
+  }
+}
+
+@keyframes mote-twinkle {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes glint-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  50%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes glint-left {
+  0% {
+    transform: translateX(100%);
+  }
+  50%,
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes glint-down {
+  0% {
+    transform: translateY(-100%);
+  }
+  50%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes glint-up {
+  0% {
+    transform: translateY(100%);
+  }
+  50%,
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+/* A quick descent, then a rest — staggered delays turn it into one travelling pulse. */
+@keyframes flow-down {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  4% {
+    opacity: 1;
+  }
+  17% {
+    opacity: 1;
+  }
+  20%,
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes modal-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0) scale(0.98);
+  }
+}
+
+@keyframes listbox-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes scan {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Reduced motion — keep everything legible, drop the movement.        */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .reveal,
+  .diagram-step {
+    opacity: 1;
+    transform: none;
+  }
+
+  .diagram-line {
+    transform: none;
+  }
+
+  /* Motes become a still scatter of specks. */
+  .mote-layer,
+  .mote-sheet {
+    animation: none !important;
+  }
+
+  .diagram-pulse,
+  .pulse-ring,
+  .border-glint,
+  .scan-line {
+    display: none;
+  }
+}
