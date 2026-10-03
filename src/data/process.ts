@@ -70,18 +70,18 @@ export interface DemoStatus {
 /** Demonstration outcomes shown beneath the final stage. */
 export const DEMO_STATUSES: DemoStatus[] = [
   {
-    label: 'Approved for Demonstration',
-    note: 'The demonstration case concludes with a favourable outcome.',
+    label: 'Pardon Granted',
+    note: 'The case concludes with clemency granted under parliamentary authority.',
     icon: CircleCheck,
   },
   {
     label: 'Further Review',
-    note: 'The demonstration case is returned to an earlier stage for additional consideration.',
+    note: 'The case is returned to an earlier review board for additional consideration.',
     icon: CircleDashed,
   },
   {
     label: 'Not Eligible',
-    note: 'The demonstration case does not meet the criteria of the framework.',
+    note: 'The case does not meet the qualifying criteria of the framework.',
     icon: CircleMinus,
   },
 ]

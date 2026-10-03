@@ -29,10 +29,9 @@ const CaseReviewHeader = memo(function CaseReviewHeader() {
         <ShieldAlert aria-hidden className="mt-0.5 size-5 shrink-0 text-sky" strokeWidth={1.5} />
         <span>
           <strong className="mr-1 font-semibold tracking-[0.14em] text-white uppercase">
-            Demonstration Portal —
+            Statutory Filing Portal —
           </strong>
-          Do not enter real passwords, authentication credentials, or sensitive personal
-          information.
+          Ensure all registration identifiers and authorized credentials are correctly entered.
         </span>
       </p>
     </PageHeader>
@@ -89,8 +88,7 @@ export function CaseReviewPage() {
                   </p>
                 </div>
                 <p className="mt-8 max-w-sm text-[0.9375rem] leading-relaxed text-muted">
-                  Provide demonstration information to simulate the preliminary AlphaWales
-                  case-review workflow.
+                  Submit verified case credentials to initiate preliminary review under the AlphaWales parliamentary framework.
                 </p>
               </Reveal>
 

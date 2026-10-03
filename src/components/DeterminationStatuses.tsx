@@ -14,7 +14,7 @@ export function DeterminationStatuses({ statuses }: DeterminationStatusesProps) 
         </h3>
         <p className="inline-flex items-center gap-2.5 self-start border border-sky/40 bg-azure/10 px-3 py-1.5 text-[0.5625rem] font-semibold tracking-[0.26em] text-sky uppercase sm:self-auto">
           <span aria-hidden className="size-1 rotate-45 bg-sky" />
-          Demonstration Statuses
+          Statutory Determinations
         </p>
       </div>
 

@@ -24,7 +24,7 @@ export function HomePage() {
               id="institution-title"
               eyebrow="The Institution"
               title="The Alpha Judiciary Parliament"
-              description="The Alpha Judiciary Parliament is presented as a structured institutional framework through which qualifying AlphaWales cases may be reviewed for possible pardon or sentence reconsideration."
+              description="The Alpha Judiciary Parliament serves as the structured institutional framework through which qualifying AlphaWales cases may be reviewed for possible pardon or sentence reconsideration."
             />
           </Reveal>
 

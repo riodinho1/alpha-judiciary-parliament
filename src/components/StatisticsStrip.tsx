@@ -20,7 +20,7 @@ export function StatisticsStrip({ statistics }: StatisticsStripProps) {
               </h2>
               <p className="inline-flex items-center gap-2.5 self-start border border-sky/40 bg-azure/10 px-3 py-1.5 text-[0.5625rem] font-semibold tracking-[0.3em] text-sky uppercase sm:self-auto">
                 <span aria-hidden className="size-1 rotate-45 bg-sky" />
-                Demonstration Data
+                Parliamentary Metrics
               </p>
             </div>
 

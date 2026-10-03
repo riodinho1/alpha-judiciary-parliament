@@ -17,8 +17,7 @@ export function NotFoundPage() {
         No Record at This Address
       </h1>
       <p className="mt-5 max-w-md text-muted">
-        The page you requested is not part of this demonstration. Return to the Parliament to
-        continue.
+        The requested parliamentary record or document cannot be located. Return to the Parliament to continue.
       </p>
       <div className="mt-10 flex flex-col gap-4 sm:flex-row">
         <Button to={ROUTES.home}>Return to Parliament</Button>

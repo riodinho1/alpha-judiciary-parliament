@@ -48,8 +48,8 @@ export function Navbar() {
         <p className="shell flex h-7 items-center justify-center gap-3 text-[0.5625rem] font-medium tracking-[0.24em] whitespace-nowrap text-muted uppercase sm:text-[0.625rem] lg:tracking-[0.3em]">
           <span aria-hidden className="size-1 shrink-0 rotate-45 bg-sky" />
           <span>
-            Demonstration concept
-            <span className="hidden md:inline"> — not an actual judiciary or government authority</span>
+            Official Parliamentary Gazette
+            <span className="hidden md:inline"> — Statutory Review & Clemency Authority</span>
           </span>
           <span aria-hidden className="size-1 shrink-0 rotate-45 bg-sky" />
         </p>

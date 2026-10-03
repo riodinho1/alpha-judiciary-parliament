@@ -45,16 +45,15 @@ export function Footer() {
         <div className="lg:col-span-5">
           <p className="eyebrow">Institutional Notice</p>
           <p className="mt-6 border-l border-sky/50 pl-5 text-sm leading-relaxed text-muted">
-            Demonstration website. This portal does not represent an actual judiciary,
-            government authority, criminal-record system, or legal institution.
+            The Alpha Judiciary Parliament is the formal governing body overseeing case review, judicial assessment, and clemency determinations for AlphaWales.
           </p>
         </div>
       </div>
 
       <div className="border-t border-white/[0.07]">
         <div className="shell flex flex-col gap-3 py-6 text-[0.6875rem] tracking-[0.14em] text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 AlphaWales — Demonstration Concept</p>
-          <p className="tracking-[0.3em] uppercase">Institutional Demonstration</p>
+          <p>© 2026 AlphaWales · Alpha Judiciary Parliament. All rights reserved.</p>
+          <p className="tracking-[0.3em] uppercase">Official Parliamentary Authority</p>
         </div>
       </div>
     </footer>

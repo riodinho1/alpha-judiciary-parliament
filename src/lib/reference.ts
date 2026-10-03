@@ -9,5 +9,5 @@ export function generateDemoReference(): string {
   const bytes = new Uint8Array(6)
   crypto.getRandomValues(bytes)
   const suffix = Array.from(bytes, (byte) => CHARSET[byte % CHARSET.length]).join('')
-  return `AJDP-DEMO-${suffix}`
+  return `AJDP-REG-${suffix}`
 }

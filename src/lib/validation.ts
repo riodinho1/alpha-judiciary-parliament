@@ -12,11 +12,11 @@ export function validateField(name: FieldName, rawValue: string): string | null 
 
   switch (name) {
     case 'validatorId':
-      if (!value) return 'Enter a demonstration validator ID.'
+      if (!value) return 'Enter an authorized validator ID.'
       if (value.length < 4) return 'Validator ID must be at least 4 characters.'
       return null
     case 'accessKey':
-      if (!rawValue) return 'Enter a demonstration access key.'
+      if (!rawValue) return 'Enter an access key pass.'
       if (rawValue.length < 6) return 'Access key must be at least 6 characters.'
       return null
     case 'membershipNumber':
@@ -28,7 +28,7 @@ export function validateField(name: FieldName, rawValue: string): string | null 
       if (!EMAIL_PATTERN.test(value)) return 'Enter a valid email address.'
       return null
     case 'caseProfile':
-      if (!value) return 'Enter a demonstration case profile number.'
+      if (!value) return 'Enter a criminal case profile number.'
       if (!CASE_PROFILE_PATTERN.test(value)) return 'Use the format ACP-000000.'
       return null
     case 'membershipStatus':

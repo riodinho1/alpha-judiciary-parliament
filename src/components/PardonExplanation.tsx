@@ -46,8 +46,7 @@ export function PardonExplanation() {
               applicable criteria.
             </p>
             <p className="mt-8 text-base leading-relaxed text-pretty text-muted sm:text-lg">
-              The demonstration illustrates how a structured institutional process could move from
-              submission through review and final determination.
+              The AlphaWales framework defines how a structured institutional process moves from submission through review and final determination.
             </p>
 
             <ul className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 text-[0.6875rem] font-semibold tracking-[0.26em] text-mist uppercase">

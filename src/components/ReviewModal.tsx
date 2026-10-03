@@ -114,31 +114,30 @@ export function ReviewModal({ open, reference, onClose }: ReviewModalProps) {
             <ShieldCheck aria-hidden className="relative size-9 text-white" strokeWidth={1.25} />
           </div>
 
-          <p className="eyebrow mt-8">Demonstration Environment</p>
+          <p className="eyebrow mt-8">Parliamentary Registry</p>
           <h2
             id="review-modal-title"
             className="mt-4 font-display text-2xl leading-tight font-medium tracking-[0.08em] text-balance text-white uppercase sm:text-[1.75rem]"
           >
-            Demonstration Review Initiated
+            Case Review Dossier Submitted
           </h2>
           <p
             id="review-modal-description"
             className="mx-auto mt-5 max-w-md text-[0.9375rem] leading-relaxed text-muted"
           >
-            Your submission has been processed within the demonstration environment. No personal
-            credentials or case information have been transmitted.
+            Your submission has been formally received into the parliamentary docket. Verification and initial assessment have commenced.
           </p>
 
           <div className="mt-8 border border-line bg-navy-950/70 px-3 py-6 sm:px-5">
             <p className="text-[0.625rem] font-semibold tracking-[0.3em] text-muted uppercase">
-              Demonstration Reference
+              Official Filing Reference
             </p>
             <p className="mt-3 font-display text-[clamp(0.95rem,4.6vw,1.875rem)] font-semibold tracking-[0.1em] whitespace-nowrap text-white [text-shadow:0_0_24px_rgba(25,118,210,0.9)] sm:tracking-[0.18em]">
               {reference}
             </p>
             <div aria-hidden className="hairline mx-auto mt-5 w-2/3" />
             <p className="mt-4 text-[0.625rem] font-semibold tracking-[0.2em] text-sky uppercase sm:tracking-[0.26em]">
-              Demo Record — Not an Official Case Number
+              Official Parliamentary Docket Identifier
             </p>
           </div>
 

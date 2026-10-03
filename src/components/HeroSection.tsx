@@ -16,7 +16,7 @@ function HeroDocket() {
     <div className="hero-rise absolute right-[8%] bottom-[12%] hidden w-64 xl:block" style={rise(600)}>
       <div className="float-soft glass p-5 shadow-[0_30px_60px_-30px_rgba(2,8,18,0.9)]">
         <p className="text-[0.5625rem] font-semibold tracking-[0.3em] text-sky uppercase">
-          Demonstration Sitting
+          Parliamentary Sitting
         </p>
         <p className="mt-2 font-display text-sm tracking-[0.14em] text-white uppercase">
           Chamber I — Review Docket
@@ -82,7 +82,7 @@ export function HeroSection() {
               <span className="pulse-ring absolute inset-0 rounded-full bg-sky" />
               <span className="relative size-1.5 rounded-full bg-sky" />
             </span>
-            Institutional Demonstration
+            Official Parliamentary Assembly
           </p>
 
           <h1

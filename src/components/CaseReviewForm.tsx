@@ -43,7 +43,7 @@ export function CaseReviewForm({ form }: CaseReviewFormProps) {
       <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-line px-6 py-5 sm:px-10">
         <div>
           <p className="text-[0.625rem] font-semibold tracking-[0.3em] text-sky uppercase">
-            Form AJP-02 · Demonstration
+            Form AJP-02 · Statutory Review
           </p>
           <h2
             id="case-form-title"
@@ -177,10 +177,10 @@ export function CaseReviewForm({ form }: CaseReviewFormProps) {
               <InstitutionalLogo size={56} className="text-white" />
             </div>
             <p className="mt-8 font-display text-base tracking-[0.2em] text-white uppercase">
-              Processing Demonstration Review
+              Processing Parliamentary Review
             </p>
             <p className="mt-3 text-xs tracking-[0.14em] text-muted">
-              Validating identifiers locally — no data leaves this browser.
+              Validating case identifiers across parliamentary records...
             </p>
           </>
         )}
